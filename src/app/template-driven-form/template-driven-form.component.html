@@ -1,0 +1,188 @@
+<div class="container-fluid">
+    <div class="row mt-4">
+        <div class="card bg-light col-sm-5 mx-5 mb-5 p-3">
+          <form #userDetail="ngForm" (ngSubmit)="onSubmit(userDetail)">
+            <div class="form-group mb-3">
+              <label>Name:</label>
+              <input
+                placeholder="Enter name"
+                required
+                type="text"
+                #name="ngModel"
+                class="form-control is-invalid"
+                [class.is-invalid]="name.invalid && name.touched"
+                name="name"
+                [(ngModel)]="userModel.name"
+              />
+              <small
+                class="text-danger"
+                [class.d-none]="name.valid || name.untouched"
+                >Name is required</small
+              >
+            </div>
+    
+            <div class="form-group mb-3">
+              <label>College:</label>
+              <input
+              placeholder="Enter College Name"
+                required
+                type="text"
+                #college="ngModel"
+                [class.is-invalid]="college.invalid && college.touched"
+                class="form-control"
+                name="college"
+                [(ngModel)]="userModel.college"
+              />
+              <small
+                class="text-danger"
+                [class.d-none]="college.valid || college.untouched"
+                >College name is required</small
+              >
+            </div>
+    
+            <div class="mb-3">
+              <label for="mobile" class="form-label">CGPA</label>
+              <input
+              placeholder="Enter CGPA out of 10"
+                required
+                type="number"
+                #cgpa="ngModel"
+                step="0.1"
+                class="form-control"
+                [ngClass]="cgpa.invalid && cgpa.touched ? 'is-invalid' : ''"
+                id="mobile"
+                [(ngModel)]="userModel.cgpa"
+                name="cgpa"
+              />
+              <div *ngIf="cgpa.invalid && cgpa.touched" class="invalid-feedback">
+                CGPA is required
+              </div>
+              <div
+                *ngIf="userModel.cgpa < 0 || userModel.cgpa > 10"
+                class="invalid-feedback"
+              >
+                CGPA must be greater then zero and smaller then 10
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="yearOfPassing" class="form-label">Year Of Passing</label>
+              <input
+                required
+                type="month"
+                #yearOfPassing="ngModel"
+                class="form-control"
+                [ngClass]="
+                  yearOfPassing.invalid && yearOfPassing.touched ? 'is-invalid' : ''
+                "
+                id="mobile"
+                [(ngModel)]="userModel.yearOfPassing"
+                name="yearOfPassing"
+              />
+              <div
+                *ngIf="yearOfPassing.invalid && yearOfPassing.touched"
+                class="invalid-feedback"
+              >
+                Please Enter valid Year Of Passing
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="dateOfJoining" class="form-label">Date of Joining</label>
+              <input
+                required
+                type="date"
+                #dateOfJoining="ngModel"
+                class="form-control"
+                [ngClass]="
+                  dateOfJoining.invalid && dateOfJoining.touched ? 'is-invalid' : ''
+                "
+                id="mobile"
+                [(ngModel)]="userModel.dateOfJoining"
+                name="dateOfJoining"
+              />
+              <div
+                *ngIf="dateOfJoining.invalid && dateOfJoining.touched"
+                class="invalid-feedback"
+              >
+                Please Enter valid Date of Joining
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="skills" class="form-label"
+                >Skills (Please specify multiple skills with comma sepreted)</label
+              >
+              <input
+                required
+                type="text"
+                #skills="ngModel"
+                class="form-control"
+                id="mobile"
+                [ngClass]="skills.invalid && skills.touched ? 'is-invalid' : ''"
+                [(ngModel)]="userModel.skill"
+                name="skill"
+              />
+              <div
+                *ngIf="skills.invalid && skills.touched"
+                class="invalid-feedback"
+              >
+                Please Enter valid Skills
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="resume" class="form-label">Upload resume</label>
+              <input
+                required
+                type="file"
+                accept="application/pdf"
+                #resume="ngModel"
+                class="form-control"
+                id="resume"
+                [ngClass]="resume.invalid && resume.touched ? 'is-invalid' : ''"
+                [(ngModel)]="userModel.resume"
+                name="resume"
+              />
+              <div
+                *ngIf="resume.invalid && resume.touched"
+                class="invalid-feedback"
+              >
+                Please upload valid resume
+              </div>
+            </div>
+            <button
+              type="submit"
+              [disabled]="userDetail.form.invalid"
+              class="btn btn-primary"
+            >
+              Submit
+            </button>
+            &nbsp; &nbsp; &nbsp;<button type="reset" class="btn btn-danger">
+              Reset
+            </button>
+          </form>
+        </div>
+        <div class="col-sm-6 mx-2">
+            <table class="table table-bordered">
+              <thead class="table-primary">
+                <tr>
+                  <th scope="col">SNo.</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">College</th>
+                  <th scope="col">CGPA</th>
+                  <th scope="col">Year Of Passing</th>
+                  <th scope="col">Date Of Joining</th>
+                  <th scope="col">Skills</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of inputs; index as i">
+                  <th scope="row">{{ i + 1 }}</th>
+                  <td scope="row">{{ item.name }}</td>
+                  <td scope="row">{{ item.college }}</td>
+                  <td scope="row">{{ item.cgpa }}</td>
+                  <td scope="row">{{ item.yearOfPassing | date }}</td>
+                  <td scope="row">{{ item.dateOfJoining | date }}</td>
+                  <td scope="row">{{ item.skill }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+</div>

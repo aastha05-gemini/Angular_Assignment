@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RegistrationFormComponent } from './registration-form.component';
+import { TemplateDrivenFormComponent } from './template-driven-form.component';
 
-describe('RegistrationFormComponent', () => {
-  let component: RegistrationFormComponent;
-  let fixture: ComponentFixture<RegistrationFormComponent>;
+describe('TemplateDrivenFormComponent', () => {
+  let component: TemplateDrivenFormComponent;
+  let fixture: ComponentFixture<TemplateDrivenFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RegistrationFormComponent ]
+      declarations: [ TemplateDrivenFormComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RegistrationFormComponent);
+    fixture = TestBed.createComponent(TemplateDrivenFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
